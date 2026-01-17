@@ -1,0 +1,23 @@
+﻿{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "NovaUI",
+	"Description": "UIFramework",
+	"Category": "Other",
+	"CreatedBy": "byteyang",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "NovaUI",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
