@@ -1,12 +1,16 @@
 ﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "NovaUI.h"
+#include "NovaUIDefine.h"
+
+DEFINE_LOG_CATEGORY(LogNovaUI);
 
 #define LOCTEXT_NAMESPACE "FNovaUIModule"
 
 void FNovaUIModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+	
 }
 
 void FNovaUIModule::ShutdownModule()
