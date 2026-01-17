@@ -26,7 +26,12 @@ public class NovaUI : ModuleRules
 			new string[]
 			{
 				"Core",
-				// ... add other public dependencies that you statically link with here ...
+				"CoreUObject",
+				"Engine",
+				"Slate",
+				"SlateCore",
+				"UMG",           // 添加UMG模块依赖，提供UUserWidget
+				"DeveloperSettings" // 添加DeveloperSettings模块依赖，提供UDeveloperSettings
 			}
 			);
 			
