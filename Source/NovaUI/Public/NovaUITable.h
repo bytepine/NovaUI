@@ -13,13 +13,7 @@ struct FNovaUITableRow : public FTableRowBase
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSoftClassPtr<UUserWidget> UIClass;
-};
-
-USTRUCT(BlueprintType)
-struct FNovaUILevelTableRow : public FTableRowBase
-{
-	GENERATED_BODY()
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TArray<FName> UINameArray;
+	int32 ZOrder = 0;
 };

@@ -17,8 +17,5 @@ public:
 	virtual FName GetCategoryName() const override { return TEXT("Plugins"); }
 	
 	UPROPERTY(Config, EditDefaultsOnly, meta = (AllowedClasses="/Script/Engine.DataTable", RequiredAssetDataTags="RowStructure=/Script/NovaUI.NovaUITableRow"))
-	FSoftObjectPath UITable = nullptr;
-	
-	UPROPERTY(Config, EditDefaultsOnly, meta = (AllowedClasses="/Script/Engine.DataTable", RequiredAssetDataTags="RowStructure=/Script/NovaUI.NovaUILevelTableRow"))
-	FSoftObjectPath DefaultUITable = nullptr;
+	TArray<FSoftObjectPath> UITableArray;
 };
