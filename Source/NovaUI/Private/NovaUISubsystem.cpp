@@ -53,9 +53,9 @@ void UNovaUISubsystem::OpenUI(const FName UIName, APlayerController* PlayerContr
 	{
 		if (UUserWidget* UserWidget = UIMap[UIName])
 		{
-			if (INovaUIInterface* Interface = Cast<INovaUIInterface>(UserWidget))
+			if (UserWidget->Implements<UNovaUIInterface>())
 			{
-				Interface->OnUpdate();
+				INovaUIInterface::Execute_OnUpdate(UserWidget);
 			}
 		}
 	}
@@ -74,10 +74,12 @@ void UNovaUISubsystem::OpenUI(const FName UIName, APlayerController* PlayerContr
 			if (UClass* Class = Row->UIClass.LoadSynchronous())
 			{
 				UUserWidget* UserWidget = CreateWidget(PlayerController, Class);
-				if (INovaUIInterface* Interface = Cast<INovaUIInterface>(UserWidget))
+				
+				if (UserWidget->Implements<UNovaUIInterface>())
 				{
-					Interface->OnOpen();
+					INovaUIInterface::Execute_OnOpen(UserWidget);
 				}
+				
 				UserWidget->AddToPlayerScreen(Row->ZOrder);
 				UIMap.Add(UIName, UserWidget);
 			}
@@ -91,10 +93,11 @@ void UNovaUISubsystem::CloseUI(const FName UIName)
 	{
 		if (UUserWidget* UserWidget = UIMap[UIName])
 		{
-			if (INovaUIInterface* Interface = Cast<INovaUIInterface>(UserWidget))
+			if (UserWidget->Implements<UNovaUIInterface>())
 			{
-				Interface->OnUpdate();
+				INovaUIInterface::Execute_OnClose(UserWidget);
 			}
+			
 			UserWidget->RemoveFromParent();
 		}
 		UIMap.Remove(UIName);
