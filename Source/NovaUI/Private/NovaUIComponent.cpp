@@ -3,7 +3,6 @@
 
 #include "NovaUIComponent.h"
 
-#include "NovaUIDefine.h"
 #include "NovaUISubsystem.h"
 
 
@@ -21,13 +20,14 @@ void UNovaUIComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UE_LOG(LogNovaUI, Log, TEXT("UNovaUIComponent::BeginPlay"));
-	
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetOuter()))
 	{
-		if (UNovaUISubsystem* NovaUISubsystem = UNovaUISubsystem::Get(this))
+		if (PlayerController->IsLocalController())
 		{
-			NovaUISubsystem->BeginPlay(GetWorld()->GetFName(), PlayerController);
+			if (UNovaUISubsystem* NovaUISubsystem = UNovaUISubsystem::Get(this))
+			{
+				NovaUISubsystem->BeginPlay(GetWorld()->GetFName(), PlayerController);
+			}
 		}
 	}
 }
@@ -36,6 +36,15 @@ void UNovaUIComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 	
-	UE_LOG(LogNovaUI, Log, TEXT("UNovaUIComponent::EndPlay %d"), EndPlayReason);
+	if (const APlayerController* PlayerController = Cast<APlayerController>(GetOuter()))
+	{
+		if (PlayerController->IsLocalController())
+		{
+			if (UNovaUISubsystem* NovaUISubsystem = UNovaUISubsystem::Get(this))
+			{
+				NovaUISubsystem->EndPlay(GetWorld()->GetFName(), EndPlayReason);
+			}
+		}
+	}
 }
 
