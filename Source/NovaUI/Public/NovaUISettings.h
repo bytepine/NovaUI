@@ -3,20 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/Developersettings.h"
+#include "Engine/DeveloperSettings.h"
 #include "NovaUISettings.generated.h"
 
-UCLASS(config = NovaUI, defaultconfig, meta=(DisplayName="NovaUI"))
+UCLASS(Config=NovaUI, DefaultConfig, meta=(DisplayName="NovaUI"))
 class UNovaUISettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 	
 public:
+	static const UNovaUISettings* Get() { return GetDefault<UNovaUISettings>(); }
+	
 	virtual FName GetCategoryName() const override { return TEXT("Plugins"); }
 	
-	UPROPERTY(EditDefaultsOnly, meta = (RequiredAssetDataTags="RowStructure=FNovaUITableRow"))
-	UDataTable* UITable;
+	UPROPERTY(Config, EditDefaultsOnly, meta = (AllowedClasses="/Script/Engine.DataTable", RequiredAssetDataTags="RowStructure=/Script/NovaUI.NovaUITableRow"))
+	FSoftObjectPath UITable = nullptr;
 	
-	UPROPERTY(EditDefaultsOnly, meta = (RequiredAssetDataTags="RowStructure=FNovaUIDefaultTableRow"))
-	UDataTable* DefaultUITable;
+	UPROPERTY(Config, EditDefaultsOnly, meta = (AllowedClasses="/Script/Engine.DataTable", RequiredAssetDataTags="RowStructure=/Script/NovaUI.NovaUILevelTableRow"))
+	FSoftObjectPath DefaultUITable = nullptr;
 };

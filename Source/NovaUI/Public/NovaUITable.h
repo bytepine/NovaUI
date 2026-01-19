@@ -16,7 +16,7 @@ struct FNovaUITableRow : public FTableRowBase
 };
 
 USTRUCT(BlueprintType)
-struct FNovaUIDefaultTableRow : public FTableRowBase
+struct FNovaUILevelTableRow : public FTableRowBase
 {
 	GENERATED_BODY()
 	
