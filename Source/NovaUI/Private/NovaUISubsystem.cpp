@@ -106,9 +106,13 @@ void UNovaUISubsystem::CloseUI(const FName UIName)
 
 void UNovaUISubsystem::CloseAll()
 {
-	for (const TTuple<FName, UUserWidget*>& Tuple : UIMap)
+	// 先收集所有 Key，避免在遍历容器时修改容器导致 ensure 错误
+	TArray<FName> Keys;
+	UIMap.GetKeys(Keys);
+	
+	for (const FName& Key : Keys)
 	{
-		CloseUI(Tuple.Key);
+		CloseUI(Key);
 	}
 }
 
